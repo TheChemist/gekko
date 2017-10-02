@@ -86,8 +86,9 @@ public class LimitOrderArbitrager {
 	 */
 	private double calculateArbitragePercentage(double priceAsk, double priceBid, double tradingFeeExchange1,
 			double tradingFeeExchange2) {
-		double grossMargin = 1 - priceAsk / priceBid;
-		return (grossMargin - tradingFeeExchange1 - tradingFeeExchange2) * 100;
+		double result = ((1 - (priceAsk / priceBid)) - tradingFeeExchange1 - tradingFeeExchange2) * 100;
+		LOGGER.trace("Margin = ((1 - ({} / {})) - {} - {}) * 100 = {}", priceAsk, priceBid, tradingFeeExchange1, tradingFeeExchange2, result);
+		return result;
 	}
 
 	/**
